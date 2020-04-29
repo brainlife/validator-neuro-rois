@@ -6,6 +6,7 @@ import nibabel as nib
 import numpy as np
 from PIL import Image
 import sys
+import re
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -23,10 +24,11 @@ meta["rois"] = []
 merged_img = None
 shape = None
 count = 0
-for file in os.listdir(config["rois"]):
+roispath=config["rois"]+"/rois"
+for file in os.listdir(roispath):
     #TODO - maybe check to make sure all rois are same size?
     print(file)
-    img = nib.load(config["rois"]+"/"+file)
+    img = nib.load(roispath+"/"+file)
     img_data = img.get_fdata()
 
     count += 1
@@ -49,7 +51,9 @@ for file in os.listdir(config["rois"]):
         merged_img[img_data==1] = count #replace with roi specific value
         #merged_img = np.where(img_data>0, img_data, merged_img)
 
-    meta["rois"].append({"filename": file, "voxels": np.count_nonzero(img_data)})
+    #strip .nii.gz out of filename
+    m = re.search('(.+?)(.nii.gz)', file)
+    meta["rois"].append({"name": m.group(1), "voxels": np.count_nonzero(img_data)})
 
 #np.set_printoptions(threshold=sys.maxsize)
 #print("max merged")
