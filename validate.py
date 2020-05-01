@@ -43,7 +43,7 @@ for file in os.listdir(roispath):
     else:
         #following images
         if shape != img_data.shape:
-            warnings.append(file+" has different image dimension compared to the first one (please see the meta data)")
+            warnings.append(file+" has different image dimension compared to the first one. You might need to reslice to make them all the same/correct size (please see the meta data)")
         else:
             print("same shape")
 
