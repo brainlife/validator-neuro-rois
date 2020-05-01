@@ -24,7 +24,7 @@ meta["rois"] = []
 merged_img = None
 shape = None
 count = 0
-roispath=config["rois"]+"/rois"
+roispath=config["rois"]
 for file in os.listdir(roispath):
     #TODO - maybe check to make sure all rois are same size?
     print(file)
