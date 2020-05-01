@@ -43,9 +43,9 @@ for file in os.listdir(roispath):
     else:
         #following images
         if shape != img_data.shape:
-            print("not the same shape")
+            warnings.append(file+" has different image dimension compared to the first one (please see the meta data)")
         else:
-            print("shape looks good")
+            print("same shape")
 
         #merged_img[merged_img<1] = img_data
         merged_img[img_data==1] = count #replace with roi specific value
