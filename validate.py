@@ -87,10 +87,10 @@ ix = Image.fromarray(np.flipud(img_x))
 ix.convert('L').save("secondary/x.png")
 
 iy = Image.fromarray(np.flipud(img_y))
-iy.convert('L').save("secondary/y.jpg")
+iy.convert('L').save("secondary/y.png")
 
 iz = Image.fromarray(np.flipud(img_z))
-iz.convert('L').save("secondary/z.jpg")
+iz.convert('L').save("secondary/z.png")
 
 with open("product.json", "w") as fp:
     json.dump({"errors": errors, "warnings": warnings, "meta": meta}, fp)
